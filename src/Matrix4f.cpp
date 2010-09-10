@@ -312,8 +312,6 @@ Matrix4f Matrix4f::transposed() const
 	return out;
 }
 
-// ---- Utility ----
-
 Matrix4f::operator float* ()
 {
 	return m_elements;

@@ -98,19 +98,14 @@ Vector4f& Vector4f::operator = ( const Vector4f& rv )
 	return *this;
 }
 
-Vector4f::operator float* ()
-{
-	return m_elements;
-}
-
 const float& Vector4f::operator [] ( int i ) const
 {
-	return m_elements[ i % 4 ];
+	return m_elements[ i ];
 }
 
 float& Vector4f::operator [] ( int i )
 {
-	return m_elements[ i % 4 ];
+	return m_elements[ i ];
 }
 
 float& Vector4f::x()
@@ -287,16 +282,19 @@ void Vector4f::negate()
 	m_elements[3] = -m_elements[3];
 }
 
-// ---- Utility ----
-
 Vector4f::operator const float* () const
+{
+	return m_elements;
+}
+
+Vector4f::operator float* ()
 {
 	return m_elements;
 }
 
 void Vector4f::print() const
 {
-	printf( "< %.3f, %.3f, %.3f, %.3f >\n",
+	printf( "< %.4f, %.4f, %.4f, %.4f >\n",
 		m_elements[0], m_elements[1], m_elements[2], m_elements[3] );
 }
 
@@ -349,4 +347,19 @@ Vector4f operator * ( float f, const Vector4f& v )
 Vector4f operator * ( const Vector4f& v, float f )
 {
 	return Vector4f( f * v.x(), f * v.y(), f * v.z(), f * v.w() );
+}
+
+Vector4f operator / ( const Vector4f& v, float f )
+{
+    return Vector4f( v[0] / f, v[1] / f, v[2] / f, v[3] / f );
+}
+
+bool operator == ( const Vector4f& v0, const Vector4f& v1 )
+{
+    return( v0.x() == v1.x() && v0.y() == v1.y() && v0.z() == v1.z() && v0.w() == v1.w() );
+}
+
+bool operator != ( const Vector4f& v0, const Vector4f& v1 )
+{
+    return !( v0 == v1 );
 }

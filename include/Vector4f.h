@@ -28,9 +28,7 @@ public:
 
 	// no destructor necessary
 
-	operator float* (); // implicit cast
-
-	// returns the ith element (mod 4)
+	// returns the ith element
 	const float& operator [] ( int i ) const;
 	float& operator [] ( int i );
 
@@ -71,8 +69,9 @@ public:
 	void negate();
 
 	// ---- Utility ----
-	operator const float* () const; // automatic type conversion for GL
-	void print() const;
+	operator const float* () const; // automatic type conversion for OpenGL
+	operator float* (); // automatic type conversion for OpenG
+	void print() const; 
 
 	static float dot( const Vector4f& v0, const Vector4f& v1 );
 	static Vector4f lerp( const Vector4f& v0, const Vector4f& v1, float alpha );
@@ -83,13 +82,21 @@ private:
 
 };
 
+// component-wise operators
 Vector4f operator + ( const Vector4f& v0, const Vector4f& v1 );
 Vector4f operator - ( const Vector4f& v0, const Vector4f& v1 );
 Vector4f operator * ( const Vector4f& v0, const Vector4f& v1 );
 Vector4f operator / ( const Vector4f& v0, const Vector4f& v1 );
 
+// unary negation
 Vector4f operator - ( const Vector4f& v );
+
+// multiply and divide by scalar
 Vector4f operator * ( float f, const Vector4f& v );
 Vector4f operator * ( const Vector4f& v, float f );
+Vector4f operator / ( const Vector4f& v, float f );
+
+bool operator == ( const Vector4f& v0, const Vector4f& v1 );
+bool operator != ( const Vector4f& v0, const Vector4f& v1 );
 
 #endif // VECTOR_4F_H

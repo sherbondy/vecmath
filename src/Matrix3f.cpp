@@ -232,8 +232,6 @@ Matrix3f Matrix3f::transposed() const
 	return out;
 }
 
-// ---- Utility ----
-
 Matrix3f::operator float* ()
 {
 	return m_elements;
@@ -241,7 +239,7 @@ Matrix3f::operator float* ()
 
 void Matrix3f::print()
 {
-	printf( "[ %.2f %.2f %.2f ]\n[ %.2f %.2f %.2f ]\n[ %.2f %.2f %.2f ]\n",
+	printf( "[ %.4f %.4f %.4f ]\n[ %.4f %.4f %.4f ]\n[ %.4f %.4f %.4f ]\n",
 		m_elements[ 0 ], m_elements[ 3 ], m_elements[ 6 ],
 		m_elements[ 1 ], m_elements[ 4 ], m_elements[ 7 ],
 		m_elements[ 2 ], m_elements[ 5 ], m_elements[ 8 ] );

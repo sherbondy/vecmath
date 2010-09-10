@@ -197,11 +197,9 @@ Vector3f::operator float* ()
     return m_elements;
 }
 
-// ---- Utility ----
-
 void Vector3f::print() const
 {
-	printf( "< %.3f, %.3f, %.3f >\n",
+	printf( "< %.4f, %.4f, %.4f >\n",
 		m_elements[0], m_elements[1], m_elements[2] );
 }
 

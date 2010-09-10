@@ -155,8 +155,6 @@ Matrix2f Matrix2f::transposed() const
 
 }
 
-// ---- Utility ----
-
 Matrix2f::operator float* ()
 {
 	return m_elements;
@@ -164,7 +162,7 @@ Matrix2f::operator float* ()
 
 void Matrix2f::print()
 {
-	printf( "[ %.2f %.2f ]\n[ %.2f %.2f ]\n",
+	printf( "[ %.4f %.4f ]\n[ %.4f %.4f ]\n",
 		m_elements[ 0 ], m_elements[ 2 ],
 		m_elements[ 1 ], m_elements[ 3 ] );
 }

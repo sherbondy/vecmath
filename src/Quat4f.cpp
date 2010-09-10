@@ -257,7 +257,7 @@ void Quat4f::setAxisAngle( float radians, const Vector3f& axis )
 
 void Quat4f::print()
 {
-	printf( "< %.2f + %.2f i + %.2f j + %.2f k >\n",
+	printf( "< %.4f + %.4f i + %.4f j + %.4f k >\n",
 		m_elements[ 0 ], m_elements[ 1 ], m_elements[ 2 ], m_elements[ 3 ] );
 }
 

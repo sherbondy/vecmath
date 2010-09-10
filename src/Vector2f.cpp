@@ -143,7 +143,7 @@ Vector2f::operator float* ()
 
 void Vector2f::print() const
 {
-	printf( "< %.3f, %.3f >\n",
+	printf( "< %.4f, %.4f >\n",
 		m_elements[0], m_elements[1] );
 }
 
