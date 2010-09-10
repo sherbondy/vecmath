@@ -147,10 +147,24 @@ void Vector2f::print() const
 		m_elements[0], m_elements[1] );
 }
 
-Vector2f& Vector2f::operator += ( const Vector2f& addend )
+Vector2f& Vector2f::operator += ( const Vector2f& v )
 {
-	m_elements[ 0 ] += addend.m_elements[ 0 ];
-	m_elements[ 1 ] += addend.m_elements[ 1 ];
+	m_elements[ 0 ] += v.m_elements[ 0 ];
+	m_elements[ 1 ] += v.m_elements[ 1 ];
+	return *this;
+}
+
+Vector2f& Vector2f::operator -= ( const Vector2f& v )
+{
+	m_elements[ 0 ] -= v.m_elements[ 0 ];
+	m_elements[ 1 ] -= v.m_elements[ 1 ];
+	return *this;
+}
+
+Vector2f& Vector2f::operator *= ( float f )
+{
+	m_elements[ 0 ] *= f;
+	m_elements[ 1 ] *= f;
 	return *this;
 }
 
@@ -214,6 +228,11 @@ Vector2f operator * ( float f, const Vector2f& v )
 Vector2f operator * ( const Vector2f& v, float f )
 {
     return Vector2f( f * v.x(), f * v.y() );
+}
+
+Vector2f operator / ( const Vector2f& v, float f )
+{
+    return Vector2f( v.x() / f, v.y() / f );
 }
 
 bool operator == ( const Vector2f& v0, const Vector2f& v1 )

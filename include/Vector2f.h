@@ -50,11 +50,13 @@ public:
     void negate();
 
 	// ---- Utility ----
-    operator const float* () const;
-    operator float* ();
+    operator const float* () const; // automatic type conversion for OpenGL 
+    operator float* (); // automatic type conversion for OpenGL 
 	void print() const;
 
 	Vector2f& operator += ( const Vector2f& v );
+	Vector2f& operator -= ( const Vector2f& v );
+	Vector2f& operator *= ( float f );
 
     static float dot( const Vector2f& v0, const Vector2f& v1 );
 
@@ -69,14 +71,19 @@ private:
 
 };
 
+// component-wise operators
 Vector2f operator + ( const Vector2f& v0, const Vector2f& v1 );
 Vector2f operator - ( const Vector2f& v0, const Vector2f& v1 );
-Vector2f operator * ( const Vector2f& v0, const Vector2f& v1 ); // component-wise multiplication
-Vector2f operator / ( const Vector2f& v0, const Vector2f& v1 ); // component-wise division
+Vector2f operator * ( const Vector2f& v0, const Vector2f& v1 );
+Vector2f operator / ( const Vector2f& v0, const Vector2f& v1 );
 
+// unary negation
 Vector2f operator - ( const Vector2f& v );
+
+// multiply and divide by scalar
 Vector2f operator * ( float f, const Vector2f& v );
 Vector2f operator * ( const Vector2f& v, float f );
+Vector2f operator / ( const Vector2f& v, float f );
 
 bool operator == ( const Vector2f& v0, const Vector2f& v1 );
 bool operator != ( const Vector2f& v0, const Vector2f& v1 );

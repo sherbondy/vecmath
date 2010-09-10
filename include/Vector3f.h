@@ -12,31 +12,31 @@ public:
 	static const Vector3f RIGHT;
 	static const Vector3f FORWARD;
 
-    Vector3f( float f = 0.f ) { m_elements[0] = m_elements[1] = m_elements[2] = f; }
-    Vector3f( float x, float y, float z ) { m_elements[0] = x; m_elements[1] = y; m_elements[2] = z; }
+    Vector3f( float f = 0.f );
+    Vector3f( float x, float y, float z );
 
 	Vector3f( const Vector2f& xy, float z );
 	Vector3f( float x, const Vector2f& yz );
 
 	// copy constructors
-    Vector3f( const Vector3f& rv ) { m_elements[0] = rv[0]; m_elements[1] = rv[1]; m_elements[2] = rv[2]; }
+    Vector3f( const Vector3f& rv );
 
 	// assignment operators
-    Vector3f& operator = ( const Vector3f& rv ) { m_elements[0] = rv[0]; m_elements[1] = rv[1]; m_elements[2] = rv[2]; return *this; }
+    Vector3f& operator = ( const Vector3f& rv );
 
 	// no destructor necessary
 
-	// returns the ith element (mod 3)
-    const float& operator [] ( int i ) const { return m_elements[i % 3]; }
-    float& operator [] ( int i ) { return m_elements[i % 3]; }
+	// returns the ith element
+    const float& operator [] ( int i ) const;
+    float& operator [] ( int i );
 
-    float& x() { return m_elements[0]; }
-	float& y() { return m_elements[1]; }
-	float& z() { return m_elements[2]; }
+    float& x();
+	float& y();
+	float& z();
 
-	float x() const { return m_elements[0]; }
-	float y() const { return m_elements[1]; }
-	float z() const { return m_elements[2]; }
+	float x() const;
+	float y() const;
+	float z() const;
 
 	Vector2f xy() const;
 	Vector2f xz() const;
@@ -47,7 +47,7 @@ public:
 	Vector3f zxy() const;
 
 	float abs() const;
-    float absSquared() const { return( m_elements[0] * m_elements[0] + m_elements[1] * m_elements[1] + m_elements[2] * m_elements[2] ); }
+    float absSquared() const;
 
 	void normalize();
 	Vector3f normalized() const;
@@ -57,32 +57,25 @@ public:
 	void negate();
 
 	// ---- Utility ----
-    operator const float* () const { return m_elements; } // automatic type conversion for OpenGL
-    operator float* () { return m_elements; } // automatic type conversion for OpenGL 
+    operator const float* () const; // automatic type conversion for OpenGL
+    operator float* (); // automatic type conversion for OpenGL 
 	void print() const;	
 
-    static float dot( const Vector3f& v0, const Vector3f& v1 ) { return v0[0] * v1[0] + v0[1] * v1[1] + v0[2] * v1[2]; }
+	Vector3f& operator += ( const Vector3f& v );
+	Vector3f& operator -= ( const Vector3f& v );
+    Vector3f& operator *= ( float f );
 
-	static Vector3f cross( const Vector3f& v0, const Vector3f& v1 )
-    {
-        return Vector3f
-        (
-        v0.y() * v1.z() - v0.z() * v1.y(),
-        v0.z() * v1.x() - v0.x() * v1.z(),
-        v0.x() * v1.y() - v0.y() * v1.x()
-        );
-    }
-
-
+    static float dot( const Vector3f& v0, const Vector3f& v1 );
+	static Vector3f cross( const Vector3f& v0, const Vector3f& v1 );
+    
+    // computes the linear interpolation between v0 and v1 by alpha \in [0,1]
 	// returns v0 * ( 1 - alpha ) * v1 * alpha
 	static Vector3f lerp( const Vector3f& v0, const Vector3f& v1, float alpha );
 
-	// catmull-rom interpolation
+	// computes the cubic catmull-rom interpolation between p0, p1, p2, p3
+    // by t \in [0,1].  Guarantees that at t = 0, the result is p0 and
+    // at p1, the result is p2.
 	static Vector3f cubicInterpolate( const Vector3f& p0, const Vector3f& p1, const Vector3f& p2, const Vector3f& p3, float t );
-
-	Vector3f& operator += ( const Vector3f& );
-	Vector3f& operator -= ( const Vector3f& );
-    Vector3f& operator *= ( float );
 
 private:
 
@@ -90,42 +83,21 @@ private:
 
 };
 
-inline Vector3f operator + ( const Vector3f& v0, const Vector3f& v1 ) { return Vector3f(v0[0] + v1[0], v0[1] + v1[1], v0[2] + v1[2]); }
-inline Vector3f operator - ( const Vector3f& v0, const Vector3f& v1 ) { return Vector3f(v0[0] - v1[0], v0[1] - v1[1], v0[2] - v1[2]); }
-inline Vector3f operator * ( const Vector3f& v0, const Vector3f& v1 ) { return Vector3f(v0[0] * v1[0], v0[1] * v1[1], v0[2] * v1[2]); }
+// component-wise operators
+Vector3f operator + ( const Vector3f& v0, const Vector3f& v1 );
+Vector3f operator - ( const Vector3f& v0, const Vector3f& v1 );
+Vector3f operator * ( const Vector3f& v0, const Vector3f& v1 );
+Vector3f operator / ( const Vector3f& v0, const Vector3f& v1 );
 
-// component-wise division
-// TODO: do it for the other classes
-inline Vector3f operator / ( const Vector3f& v0, const Vector3f& v1 ) { return Vector3f(v0[0] / v1[0], v0[1] / v1[1], v0[2] / v1[2]); }
-inline Vector3f operator / ( const Vector3f& v, float f ) { return Vector3f(v[0] / f, v[1] / f, v[2] / f); }
+// unary negation
+Vector3f operator - ( const Vector3f& v );
 
-inline Vector3f operator - ( const Vector3f& v ) { return Vector3f(-v[0], -v[1], -v[2]); }
-inline Vector3f operator * ( float f, const Vector3f& v ) { return Vector3f(v[0] * f, v[1] * f, v[2] * f); }
-inline Vector3f operator * ( const Vector3f& v, float f ) { return Vector3f(v[0] * f, v[1] * f, v[2] * f); }
+// multiply and divide by scalar
+Vector3f operator * ( float f, const Vector3f& v );
+Vector3f operator * ( const Vector3f& v, float f );
+Vector3f operator / ( const Vector3f& v, float f );
 
-inline Vector3f& Vector3f::operator+=( const Vector3f& addend )
-{
-	m_elements[ 0 ] += addend.m_elements[ 0 ];
-	m_elements[ 1 ] += addend.m_elements[ 1 ];
-	m_elements[ 2 ] += addend.m_elements[ 2 ];
-	return *this;
-}
-
-inline Vector3f& Vector3f::operator-=( const Vector3f& addend )
-{
-	m_elements[ 0 ] -= addend.m_elements[ 0 ];
-	m_elements[ 1 ] -= addend.m_elements[ 1 ];
-	m_elements[ 2 ] -= addend.m_elements[ 2 ];
-	return *this;
-}
-
-inline Vector3f& Vector3f::operator*=( float s )
-{
-	m_elements[ 0 ] *= s;
-	m_elements[ 1 ] *= s;
-	m_elements[ 2 ] *= s;
-	return *this;
-}
-
+bool operator == ( const Vector3f& v0, const Vector3f& v1 );
+bool operator != ( const Vector3f& v0, const Vector3f& v1 );
 
 #endif // VECTOR_3F_H
