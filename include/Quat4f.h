@@ -60,8 +60,6 @@ public:
 	// sets this quaternion to be a rotation of fRadians about v = < fx, fy, fz >, v need not necessarily be unit length
 	void setAxisAngle( float radians, const Vector3f& axis );
 
-	Vector3f rotateVector( const Vector3f& v );
-
 	// ---- Utility ----
 	void print();
  
