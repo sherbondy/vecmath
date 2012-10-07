@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXFileReference section */
-		3EE40C70160D01EC00531768 /* .git */ = {isa = PBXFileReference; lastKnownFileType = folder; path = .git; sourceTree = "<group>"; };
 		3EE40C71160D01EC00531768 /* include */ = {isa = PBXFileReference; lastKnownFileType = folder; path = include; sourceTree = "<group>"; };
 		3EE40C72160D01EC00531768 /* lib */ = {isa = PBXFileReference; lastKnownFileType = folder; path = lib; sourceTree = "<group>"; };
 		3EE40C73160D01EC00531768 /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
@@ -18,7 +17,6 @@
 		3EE40C67160D01EC00531768 = {
 			isa = PBXGroup;
 			children = (
-				3EE40C70160D01EC00531768 /* .git */,
 				3EE40C71160D01EC00531768 /* include */,
 				3EE40C72160D01EC00531768 /* lib */,
 				3EE40C73160D01EC00531768 /* Makefile */,
