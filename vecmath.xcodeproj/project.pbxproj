@@ -34,7 +34,7 @@
 			buildPhases = (
 			);
 			buildToolPath = /usr/bin/make;
-			buildWorkingDirectory = /Users/ethanis/Dropbox/MIT/Junior/6.837/one/vecmath;
+			buildWorkingDirectory = "$(SRCROOT)";
 			dependencies = (
 			);
 			name = vecmath;
